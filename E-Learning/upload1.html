@@ -1,0 +1,119 @@
+<section class="course-content">
+    <div class="learning-materials">
+        <h2>Teaching and Learning Materials</h2>
+
+        <details class="folder">
+            <summary><i class="fas fa-folder"></i> Lecture Slides</summary>
+            <ul class="file-list">
+                <li><a href="#">00 CSF VE3 - Module Introduction.pdf</a></li>
+            </ul>
+            <button class="download-btn">Download folder</button>
+            <button class="add-file-btn">Add File</button>
+        </details>
+
+        <details class="folder">
+            <summary><i class="fas fa-folder"></i> Tutorial Materials</summary>
+            <ul class="file-list">
+                <li><a href="#">03_Nessus Installation (Kali Linux).doc</a></li>
+                <li><a href="#">04_Vulnerability Scanning_updated.docx</a></li>
+            </ul>
+            <button class="download-btn">Download folder</button>
+            <button class="add-file-btn">Add File</button>
+        </details>
+    </div>
+</section>
+
+<!-- File Upload Dialog -->
+<div id="upload-dialog" class="upload-dialog">
+    <div class="upload-content">
+        <h3>Upload File</h3>
+        <input type="file" id="fileInput" />
+        <p id="fileName">No file selected</p>
+        <button id="uploadBtn">Upload</button>
+        <button id="cancelBtn">Cancel</button>
+    </div>
+</div>
+
+<style>
+/* Styling for upload dialog */
+.upload-dialog {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+}
+
+.upload-content h3 {
+    margin-bottom: 15px;
+}
+
+.upload-content button {
+    margin: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#uploadBtn {
+    background-color: #28a745;
+    color: white;
+}
+
+#cancelBtn {
+    background-color: #dc3545;
+    color: white;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let selectedFolder = null;
+
+    // Open upload dialog
+    document.querySelectorAll(".add-file-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            selectedFolder = this.closest(".folder").querySelector(".file-list");
+            document.getElementById("upload-dialog").style.display = "block";
+        });
+    });
+
+    // Handle file selection
+    document.getElementById("fileInput").addEventListener("change", function() {
+        let fileName = this.files[0] ? this.files[0].name : "No file selected";
+        document.getElementById("fileName").textContent = fileName;
+    });
+
+    // Upload file (add to list)
+    document.getElementById("uploadBtn").addEventListener("click", function() {
+        let fileInput = document.getElementById("fileInput");
+        if (fileInput.files.length > 0 && selectedFolder) {
+            let file = fileInput.files[0];
+            let listItem = document.createElement("li");
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(file);
+            link.textContent = file.name;
+            link.download = file.name;
+            listItem.appendChild(link);
+            selectedFolder.appendChild(listItem);
+        }
+        closeDialog();
+    });
+
+    // Cancel upload
+    document.getElementById("cancelBtn").addEventListener("click", closeDialog);
+
+    function closeDialog() {
+        document.getElementById("upload-dialog").style.display = "none";
+        document.getElementById("fileInput").value = "";
+        document.getElementById("fileName").textContent = "No file selected";
+    }
+});
+</script>

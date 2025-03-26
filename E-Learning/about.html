@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+
+    <!--font awesome cdnjs link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!--custom CSS link-->
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+    
+<!-- header section starts -->
+<header class="header">
+
+    <section class="flex">
+
+        <a href="home.html" class="logo">Learnbar</a>
+
+        <form action="" method="post" class="search-form">
+            <input type="text" name="search_box" placeholder="search courses..." required maxlength="50">
+            <button type="submit" class="fas fa-search" name="search_box"></button>
+        </form>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="toggle-btn" class="fas fa-sun"></div>
+        </div>
+
+        <div class="profile">
+            <img src="picture/Loren.jpg"alt="">
+            <h3>Loren</h3>
+            <span>Student</span>
+            <a href="profile.html" class="btn">View Profile</a>
+            <div class="flex-btn">
+                <a href="login.html" class="option-btn">Login</a>
+                <a href="register.html" class="option-btn">Register</a>
+            </div>
+        </div>
+
+    </section>
+
+</header>
+
+<!-- side bar-->
+<!-- navbar-->
+<div class="side-bar">
+
+    <nav class="navbar">
+        <a href="home.html"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
+        <a href="timetables.html"><i class="fas fa-table"></i><span>Timetables</span></a>
+        <a href="contact.html"><i class="fas fa-headset"></i><span>Contact Us</span></a>
+        <a href="about.html"><i class="fas fa-question"></i><span>About Us</span></a>
+    </nav>
+</div>
+
+<!--about part start from here-->
+
+<section class="about">
+
+    <div class="row">
+
+        <div class="image">
+            <img src="picture/about2.avif" alt="">
+        </div>
+
+        <div class="content">
+            <h3>Why Choose Learnbar ?</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit, exercitationem at dolore aut dolor non ipsam aliquam, reprehenderit a, sed nam praesentium.</p>
+            <a href="courses.html" class="inline-btn">Our Courses</a>
+        </div>
+
+    </div>
+
+    <div class="box-container">
+        <div class="box">
+            <i class="fas fa-graduation-cap"></i>
+            <div>
+                <h3>+2k</h3>
+                <span>Online Courses</span>
+            </div>
+        </div>
+    
+        <div class="box">
+            <i class="fas fa-user-graduate"></i>
+            <div>
+                <h3>+4k</h3>
+                <span>Brilliant Students</span>
+            </div>
+        </div>
+    
+        <div class="box">
+            <i class="fas fa-chalkboard-user"></i>
+            <div>
+                <h3>+3.5k</h3>
+                <span>Expert Lecturers</span>
+            </div>
+        </div>
+    
+        <div class="box">
+            <i class="fas fa-briefcase"></i>
+            <div>
+                <h3>83%</h3>
+                <span>Job Placement</span>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<!--about part enf from here-->
+
+
+<!--reviews section starts-->
+
+<section class="reviews">
+    <h1 class="heading">Reviews</h1>
+
+    <div class="review-form">
+        <h3>Leave a Review</h3>
+        <input type="text" id="reviewer-name" placeholder="Your Name" required readonly>
+        <select id="review-rating">
+            <option value="5">5 - Excellent</option>
+            <option value="4">4 - Very Good</option>
+            <option value="3">3 - Good</option>
+            <option value="2">2 - Fair</option>
+            <option value="1">1 - Poor</option>
+        </select>
+        <textarea id="review-comment" placeholder="Your Review" required></textarea>
+        <button id="submit-btn">Submit Review</button>
+    </div>
+    
+    <div class="reviews-container">
+        <h2>All Reviews</h2>
+        <div id="reviews-list"></div>
+    </div>
+    
+        
+</section>
+
+<!--review end end-->
+
+<!--Footer start here-->
+
+
+
+<!--Footer end by here-->
+
+<!--
+<style>
+    body { background-color: red !important; }
+</style>
+-->
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!--font awesome cdnjs link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!--custom CSS link-->
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+    
+<!-- header section starts -->
+<header class="header">
+
+    <section class="flex">
+
+        <a href="home.html" class="logo">Learnbar</a>
+
+        <form action="" method="post" class="search-form">
+            <input type="text" name="search_box" placeholder="search courses..." required maxlength="50">
+            <button type="submit" class="fas fa-search" name="search_box"></button>
+        </form>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="toggle-btn" class="fas fa-sun"></div>
+        </div>
+
+        <div class="profile">
+            <img src="picture/Loren.jpg"alt="">
+            <h3>Loren</h3>
+            <span>Student</span>
+            <a href="profile.html" class="btn">View Profile</a>
+            <div class="flex-btn">
+                <a href="home_unlogin.html" class="option-btn">Log Out</a>
+            </div>
+        </div>
+
+    </section>
+
+</header>
+
+<!-- side bar-->
+<!-- navbar-->
+<div class="side-bar">
+
+    <nav class="navbar">
+        <a href="home.html"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
+        <a href="timetables.html"><i class="fas fa-table"></i><span>Timetables</span></a>
+        <a href="contact.html"><i class="fas fa-headset"></i><span>Contact Us</span></a>
+        <a href="about.html"><i class="fas fa-question"></i><span>About Us</span></a>
+    </nav>
+</div>
+
+    <!-- Main Content Section -->
+<!-- Main Content Section -->
+<section class="course-content">
+    <div class="learning-materials">
+        <h2>Teaching and Learning Materials</h2>
+
+        <details class="folder">
+            <summary><i class="fas fa-folder"></i> Lecture Slides</summary>
+            <ul>
+                <li><a href="#">00 CSF VE3 - Module Introduction.pdf</a></li>
+            </ul>
+            <button class="download-btn">Download folder</button>
+        </details>
+
+        <details class="folder">
+            <summary><i class="fas fa-folder"></i> Tutorial Materials</summary>
+            <ul>
+                <li><a href="#">03_Nessus Installation (Kali Linux).doc</a></li>
+                <li><a href="#">04_Vulnerability Scanning_updated.docx</a></li>
+                <li><a href="#">06a - Disk Imaging.docx</a></li>
+                <li><a href="#">06b - Memory Imaging.docx</a></li>
+                <li><a href="#">07_Hard Disk Image Analysis_Quest.docx</a></li>
+                <li><a href="#">08 - RAM Analysis MemoryDump_Volatility.zip</a></li>
+                <li><a href="#">08_RAM Analysis.docx</a></li>
+                <li><a href="#">10. Data Hiding_HxDSetupEN.zip</a></li>
+                <li><a href="#">FieldKit.rar</a></li>
+            </ul>
+            <button class="download-btn">Download folder</button>
+        </details>
+    </div>
+</section>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
