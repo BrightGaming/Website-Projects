@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach John Smith</title>
+    <link rel="Shortcut Icon" href="Images/SmallLogo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /*This makes the div same size although one may have 50px padding and the other don't (Regardless of padding, border)*/
+        }
+
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 55px;
+            background-color: floralwhite;
+        }
+
+        /* Header styling */
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: bisque;
+            padding: 10px 0;
+            z-index: 1000; /*This makes so header is 1000 page infornt*/
+        }
+
+        nav {
+            display: flex; /* example: https://www.w3schools.com/cssref/playdemo.php?filename=playcss_display&preval=flex*/
+            justify-content: space-between; /* example: https://www.w3schools.com/cssref/playdemo.php?filename=playcss_display&preval=flex*/
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img{
+            width: 200px;
+            height: auto;          
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            position: relative;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+            font-size: 10pt;
+            padding: 8px 15px;
+            transition: all 1s ease;
+        }
+
+        .nav-links a:hover {
+            color: darkkhaki;          
+        }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            display: none;
+            background-color: bisque;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0;
+            width: 120px;
+            margin: 0;
+            z-index: 1000
+        }
+
+        .dropdown li {
+            margin: 0;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 5px 10px;
+            font-size: 9pt;
+            text-align: left;
+            transition: all 1s ease;
+        }
+
+        .dropdown a:hover {
+            color: darkkhaki;
+        }
+
+        /* Show the dropdown when hovering on desktop */
+        .nav-links li:hover .dropdown {
+            display: block;
+        }
+
+        .cta {
+            display: flex;
+            align-items: center;
+        }
+
+        .cta img {
+            width: 17px;           
+            margin-right: 2px;
+        }
+        
+        .cta .cartbtn {
+            background-color: bisque;
+            padding: 8px 15px;
+            color: #fff;
+            display: flex;
+            margin-right: 4px;
+            align-items: center;
+        }
+
+        .cta .shopbtn {
+            background-color: orangered;
+            padding: 8px 15px;
+            color: black;
+            font-weight: bold;
+            font-size: 9pt;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 1s ease;
+        }
+
+        .cta-button {
+            margin-bottom: 20px;
+            background-color: lemonchiffon; /* Your preferred color */
+            color: black;
+            padding: 14px 28px;
+            font-size: 12pt;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        main{
+            padding-top: 100px; /* Adjust this value based on your header height */
+            padding-bottom: 20px; /* Optional */
+            padding: 20px;
+        }
+
+        .coach{
+            text-align: center;
+            padding: 50px 20px;
+            background-color: floralwhite; /* Light background */
+        }
+
+        .coach h1 {
+            font-size: 28pt;
+            color: rosybrown;
+        }
+
+        .coach h2{
+            font-size: 20pt;
+            color: slategray;
+            margin-bottom: 40px;
+        }
+
+        .coach p{
+            font-size: 13pt;
+            color: olive;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        .coach img {
+            width: 400px;
+        }
+        
+        footer{
+            background-color: #333;
+            color: white;
+            text-align: left;
+            padding: 16px;
+            margin-top: 20px;
+            clear: both;
+        }
+
+        footer p{
+            font-size: 20pt;
+        }
+        /* Responsive styling */
+        /* Responsive Layout: Desktop and Larger Devices */
+        @media (min-width: 1024px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 15px;
+            }
+
+            .logo img {
+                width: 180px; 
+            }
+
+            .nav-links li {
+                margin-left: 15px; 
+            }
+
+            .nav-links a {
+                font-size: 9pt; 
+                padding: 8px 12px;
+            }
+
+            .cta .cartbtn {
+                padding: 6px 12px;
+                font-size: 9pt;
+            }
+            .coach p{
+                margin-left: 200px;
+                margin-right: 200px;
+            }
+        }
+
+        /* Tablet Layout */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 10px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px 0;
+                text-align: center;
+                font-size: 12pt;
+            }
+
+            .cta {
+                margin-top: 10px;
+            }
+            body{
+                padding-top: 360px;
+            }
+        }
+
+         /*Mobile Layout*/
+        @media (max-width: 767px) {
+            .logo img {
+                width: 150px;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .nav-links { 
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+                font-size: 12pt;
+            }
+
+            .cta {
+                margin-top: 10px;
+            }
+
+            .cta .cartbtn {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            body{
+                padding-top: 425px;
+            }
+
+            .coach img{
+                width: 300px;
+            }
+            .coach p{
+                font-size: 10pt;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Header Nav -->
+     <header>
+        <nav>
+            <div class="logo">
+                <a href="Homepage.html">
+                    <img src="Images/Logo.png" alt="Logo Icon">
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="Homepage.html">Homepage</a></li>
+                <li>
+                    <a href="AboutUs.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="CoachLC.html">Coach Lucifer</a></li>
+                        <li><a href="CoachJS.html">Coach Smith</a></li>
+                    </ul>
+                </li>
+                <li><a href="ContactUs.html">Contact Us</a></li>
+                <li><a href="Program.html">Program</a></li>
+                <li><a href="Calendar.html">Calendar</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+                <li><a href="Testimonials.html">Testimonials</a></li>
+            </ul>
+
+            <div class="cta">
+                <a href="shop.html" class="shopbtn">Shop</a>
+                <a href="viewcart.html" class="cartbtn"><img src="Images/Cart.png" alt="Cart Icon"></a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main -->
+
+    <main>
+        <section class="coach">
+            <h1>Coach John Smith</h1>
+            <h2>Assistant Coach</h2>
+            <img src="Images/Acoach.png" alt="Assistant Coach" />
+            <p>
+                Coach John Smith Smith, the assistant coach of Tobe Volleyball Club, is a volleyball aficionado who is master of volleyball. 
+                With 8 years of coaching and 18 years of playing competitive volleyball, Coach Smith has always lead his team to victories whether 
+                it be playing or coaching. Leave it up to Coach Smith if you want to become an excellent volleyball player.                        
+            </p>
+            <p>
+                Coach Smith's aim is to elevate the volleyball experience, making volleyball a more competitive, advanced and most importantly 
+                fun sport. Coach Smith is a key coach to Tobe Volleyball Club, helping win many tournaments.
+            </p>
+            <p>
+                Coach Smith is a loving husband to his wife and a father to 2 girls. His hobby is to play volleyball, eat and sleep. Coach Smith 
+                especially loves to eat japanese cuisine like sushi and ramen. Fun fact: Coach Smith's favourite volleyball team is the Japan's national team.
+            </p>
+            <p>
+                Coach Smith is a very serious and disciplined person, with the intention to improve each day. However, he has his fun side too, 
+                which can be proven with his unique volleyball funtivities.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Tobe Volleyball Club</p>
+        <div id="Footer"></div>
+            <h3>CONTACT INFO</h3>
+            <label>
+            <table>
+                <tr>
+                    <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4vtphMtxRWfK6nO2CIbGfSETyEs79Dr6oPw&s" alt="Gmail Picture" 
+                        height="30" width="45"></td>
+                    <td>Email Address:</td>
+                    <td><a href="mailto:TobeVC@gmail.com" target="_blank">TobeVC@gmail.com</a></td>
+                </tr>
+                <tr>
+                    <td><img src="https://seeklogo.com/images/W/whatsapp-logo-0DBD89C8E2-seeklogo.com.png" alt="Whatsapp Logo"
+                        height="30" width="45"></td>
+                    <td>Phone Number:</td>
+                    <td>
+                        <a href="https://wa.me/+60128894667" target="_blank"></a>
+                        <a href="tel:+60128894667" target="_blank">+60128894667</a>
+                    </td>
+                </tr>
+            </table>
+            </label>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tobe Volleyball Club - Testimonials</title>
+    <link rel="Shortcut Icon" href="Images/SmallLogo.png">
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 55px;
+            background-color: floralwhite;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+        }
+
+        main {
+            flex: 1; 
+            padding: 20px; 
+        }
+
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: bisque;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            position: relative;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+            font-size: 10pt;
+            padding: 8px 15px;
+            transition: all 1s ease;
+        }
+
+        .nav-links a:hover {
+            color: darkkhaki;
+        }
+
+        .testimonials {
+            padding: 50px 20px;
+            background-color: lavenderblush;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 26pt;
+            color: dimgray;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            display: inline-block;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-card h3 {
+            font-size: 18pt;
+            margin-bottom: 10px;
+            color: #0096FF;
+        }
+
+        .testimonial-card p {
+            font-size: 12pt;
+            color: mediumseagreen;
+            font-weight: bold;
+        }
+
+        .testimonial-card .client-feedback {
+            font-size: 10pt;
+            color: darkgray;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            display: none;
+            background-color: bisque;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0;
+            width: 120px;
+            margin: 0;
+            z-index: 1000;
+        }
+
+        .dropdown li {
+            margin: 0;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 5px 10px;
+            font-size: 9pt;
+            text-align: left;
+            transition: all 1s ease;
+        }
+
+        .dropdown a:hover {
+            color: darkkhaki;
+        }
+
+        .nav-links li:hover .dropdown {
+            display: block;
+        }
+
+        .cta {
+            display: flex;
+            align-items: center;
+        }
+
+        .cta img {
+            width: 17px;
+            margin-right: 2px;
+        }
+
+        .cta .cartbtn {
+            background-color: bisque;
+            padding: 8px 15px;
+            color: #fff;
+            display: flex;
+            margin-right: 4px;
+            align-items: center;
+        }
+
+        .cta .shopbtn {
+            background-color: orangered;
+            padding: 8px 15px;
+            color: black;
+            font-weight: bold;
+            font-size: 9pt;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 1s ease;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: left;
+            padding: 16px;
+            margin-top: 20px;
+            clear: both;
+        }
+
+        footer p {
+            font-size: 20pt;
+        }
+
+        footer h3 {
+            margin-top: 10px;
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .contact-item img {
+            margin-right: 10px;
+        }
+
+        @media (min-width: 1024px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 15px;
+            }
+
+            .logo img {
+                width: 180px;
+            }
+
+            .nav-links li {
+                margin-left: 15px;
+            }
+
+            .nav-links a {
+                font-size: 9pt;
+                padding: 8px 12px;
+            }
+
+            .cta .cartbtn {
+                padding: 6px 12px;
+                font-size: 9pt;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 10px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px 0;
+                text-align: center;
+                font-size: 12pt;
+            }
+
+            .cta {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .logo img {
+                width: 150px;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .nav-links { 
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+                font-size: 12pt;
+            }
+
+            .cta {
+                margin-top: 10px;
+            }
+
+            .cta .cartbtn {
+                font-size: 14px;
+                padding: 10px;
+            }
+        } 
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="Homepage.html">
+                    <img src="Images/Logo.png" alt="Logo Icon">
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="Homepage.html">Homepage</a></li>
+                <li>
+                    <a href="AboutUs.html">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="CoachLC.html">Coach Chrollo</a></li>
+                        <li><a href="CoachJS.html">Coach Smith</a></li>
+                    </ul>
+                </li>
+                <li><a href="ContactUs.html">Contact Us</a></li>
+                <li><a href="Program.html">Program</a></li>
+                <li><a href="Calender.html">Calendar</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+                <li><a href="Testimonials.html">Testimonials</a></li>
+            </ul>
+
+            <div class="cta">
+                <a href="shop.html" class="shopbtn">Shop</a>
+                <a href="viewcart.html" class="cartbtn"><img src="Images/Cart.png" alt="Cart Icon"></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="testimonials">
+            <h2>What Our Clients Say</h2>
+
+            <div class="testimonial-card">
+                <img src="Images/Parent.png" alt="Client Photo">
+                <h3>John Doe</h3>
+                <p>Parent of a Player</p>
+                <p class="client-feedback">"Tobe Volleyball Club has been an amazing experience for my child. The coaches are skilled and really care about player development."</p>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="Images/CParent.png" alt="Client Photo">
+                <h3>Jane Smith</h3>
+                <p>Former Player</p>
+                <p class="client-feedback">"I loved my time at Tobe Volleyball Club! The training not only improved my volleyball skills but also taught me discipline and teamwork."</p>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="Images/FormerPlayer.png" alt="Client Photo">
+                <h3>Mary Johnson</h3>
+                <p>Parent of a Player</p>
+                <p class="client-feedback">"Highly recommend this club. My son has grown so much, both on and off the court. It's been an incredible journey for him."</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Tobe Volleyball Club</p>
+        <div id="Footer"></div>
+            <h3>CONTACT INFO</h3>
+            <label>
+            <table>
+                <tr>
+                    <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4vtphMtxRWfK6nO2CIbGfSETyEs79Dr6oPw&s" alt="Gmail Picture" 
+                        height="30" width="45"></td>
+                    <td>Email Address:</td>
+                    <td><a href="mailto:TobeVC@gmail.com" target="_blank">TobeVC@gmail.com</a></td>
+                </tr>
+                <tr>
+                    <td><img src="https://seeklogo.com/images/W/whatsapp-logo-0DBD89C8E2-seeklogo.com.png" alt="Whatsapp Logo"
+                        height="30" width="45"></td>
+                    <td>Phone Number:</td>
+                    <td>
+                        <a href="https://wa.me/+60128894667" target="_blank"></a>
+                        <a href="tel:+60128894667" target="_blank">+60128894667</a>
+                    </td>
+                </tr>
+            </table>
+            </label>
+        </div>
+    </footer>
+</body>
+</html>

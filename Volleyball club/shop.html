@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Grace Volleyball Club</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your main stylesheet -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: floralwhite;
+        }
+
+        .shop-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .shop-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            width: 250px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .shop-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .shop-item button {
+            background-color: orangered;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 12pt;
+            margin-top: 10px;
+        }
+
+        .shop-item button:hover {
+            background-color: darkorange;
+        }
+
+        .size-select {
+            margin: 10px 0;
+        }
+
+        .cart {
+            background-color: lemonchiffon;
+            padding: 20px;
+            margin-top: 20px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .cart h3 {
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart-items li {
+            margin-bottom: 10px;
+        }
+
+        .cart-total {
+            font-weight: bold;
+        }
+
+        /* Additional styles for buttons */
+        .cart button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 12pt;
+            border: none;
+        }
+
+        #clear-cart {
+            background-color: red;
+            color: white;
+        }
+
+        #clear-cart:hover {
+            background-color: darkred;
+        }
+
+        /* Back Button */
+        .back-button {
+            background-color: #4CAF50; 
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 12pt;
+            margin: 20px;
+            text-align: left; 
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <button class="back-button" onclick="window.location.href='homepage.html'">Back</button>
+
+    <div class="shop-container">
+        <!-- Item 1 -->
+        <div class="shop-item" data-item="Volleyball Jersey" data-price="25" data-image="Images/jersey.png">
+            <img src="Images/jerseyVolley.png" alt="Volleyball Jersey">
+            <h2>Volleyball Jersey</h2>
+            <p>Price: $25</p>
+            <div class="size-select">
+                <label for="jersey-size">Select Size:</label>
+                <select id="jersey-size">
+                    <option value="">-- Select Size --</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+            </div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="shop-item" data-item="Volleyball Shoes" data-price="45" data-image="Images/shoes.png">
+            <img src="Images/shoe.jpg" alt="Volleyball Shoes">
+            <h2>Volleyball Shoes</h2>
+            <p>Price: $45</p>
+            <div class="size-select">
+                <label for="shoe-size">Select Size:</label>
+                <select id="shoe-size">
+                    <option value="">-- Select Size --</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="shop-item" data-item="Volleyball" data-price="20" data-image="Images/volleyball.png">
+            <img src="Images/volleyBall.jpg" alt="Volleyball">
+            <h2>Volleyball</h2>
+            <p>Price: $20</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="cart">
+        <h3>Your Cart</h3>
+        <ul class="cart-items">
+            <!-- Cart items will be injected here -->
+        </ul>
+        <p class="cart-total">Total: $0</p>
+
+        <!-- Buttons for Confirm and Clear Cart -->
+        <button id="clear-cart">Clear Cart</button>
+        <button id="view-cart">View Cart</button>
+    </div>
+
+    <!-- JavaScript for Shopping Cart Functionality -->
+    <script>
+        const cart = [];
+        const cartItemsElement = document.querySelector('.cart-items');
+        const cartTotalElement = document.querySelector('.cart-total');
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemElement = this.closest('.shop-item');
+                const itemName = itemElement.getAttribute('data-item');
+                const itemPrice = parseFloat(itemElement.getAttribute('data-price'));
+                const itemImage = itemElement.querySelector('img').src; // Get the image URL
+                
+                let selectedSize = '';
+                if (itemName === "Volleyball Jersey") {
+                    selectedSize = itemElement.querySelector('#jersey-size').value;
+                } else if (itemName === "Volleyball Shoes") {
+                    selectedSize = itemElement.querySelector('#shoe-size').value;
+                }
+
+                // Check if a size is selected for the jersey and shoes
+                if ((itemName === "Volleyball Jersey" || itemName === "Volleyball Shoes") && !selectedSize) {
+                    alert('Please select a size for the item.');
+                    return; // Exit if no size is selected
+                }
+
+                addItemToCart(itemName, itemPrice, itemImage, selectedSize); // Pass selected size to the function
+                updateCartDisplay();
+            });
+        });
+
+        function addItemToCart(itemName, itemPrice, itemImage, selectedSize) {
+            const existingItem = cart.find(item => item.name === itemName && item.size === selectedSize); // Check by name and size
+            if (existingItem) {
+                existingItem.quantity += 1; // Increment quantity for existing item
+            } else {
+                // Add new item with size to cart
+                cart.push({ name: itemName, price: itemPrice, image: itemImage, quantity: 1, size: selectedSize });
+            }
+        }
+
+        function updateCartDisplay() {
+            cartItemsElement.innerHTML = ''; // Clear previous items
+
+            // Update cart items
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} (Size: ${item.size}) - $${item.price} x ${item.quantity}`; // Include size in display
+                cartItemsElement.appendChild(listItem);
+            });
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0); // Calculate total
+            cartTotalElement.textContent = `Total: $${total.toFixed(2)}`; // Display total with two decimal places
+        }
+
+        // View Cart Button - Redirect to viewcart.html
+        document.getElementById('view-cart').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Your cart is empty.');
+            } else {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                window.location.href = 'viewcart.html'; // Ensure this page exists
+            }
+        });
+
+        // Clear Cart Button
+        document.getElementById('clear-cart').addEventListener('click', function() {
+            cart.length = 0; // Clear the cart array
+            updateCartDisplay(); // Update the display to show an empty cart
+        });
+    </script>
+</body>
+</html>

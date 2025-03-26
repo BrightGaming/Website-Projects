@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | Grace Volleyball Club</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .cart-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr 100px;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .cart-item img {
+            max-width: 100px;
+            border-radius: 6px;
+        }
+
+        .cart-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cart-details p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .cart-quantity-control {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-quantity-control button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .cart-quantity-control button:hover {
+            background-color: #0056b3;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: right;
+            color: #007bff;
+        }
+
+        #confirm-order, #back-to-shop {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        #confirm-order:hover, #back-to-shop:hover {
+            background-color: #218838;
+        }
+
+        #back-to-shop {
+            background-color: #ff5733;
+            margin-top: 10px;
+        }
+
+        #back-to-shop:hover {
+            background-color: #c23d1c;
+        }
+
+        /* Subtle hover effect on cart items */
+        .cart-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Your Cart</h1>
+
+    <div class="cart-container">
+        <ul class="cart-items">
+            <!-- Cart items will be injected here -->
+        </ul>
+
+        <div class="total-section">
+            <span class="cart-total">Total: $0</span>
+        </div>
+
+        <!-- Confirm Button -->
+        <button id="confirm-order">Confirm Order</button>
+        <!-- Back to Shop Button -->
+        <button id="back-to-shop">Back to Shop</button>
+    </div>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsElement = document.querySelector('.cart-items');
+        const cartTotalElement = document.querySelector('.cart-total');
+
+        function updateCartDisplay() {
+            cartItemsElement.innerHTML = ''; // Clear existing items
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('cart-item');
+
+                // Create image element
+                const itemImage = document.createElement('img');
+                itemImage.src = item.image;
+
+                // Create container for item details
+                const itemDetails = document.createElement('div');
+                itemDetails.classList.add('cart-details');
+
+                // Create text element for item details
+                itemDetails.innerHTML = `
+                    <p><strong>${item.name}</strong></p>
+                    <p>Size: ${item.size}</p>
+                    <p>Price: $${item.price}</p>
+                `;
+
+                // Create quantity control
+                const quantityControl = document.createElement('div');
+                quantityControl.classList.add('cart-quantity-control');
+                quantityControl.innerHTML = `
+                    <button onclick="changeQuantity('${item.name}', -1)">−</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="changeQuantity('${item.name}', 1)">+</button>
+                `;
+
+                // Append image, details, and quantity control to the list item
+                listItem.appendChild(itemImage);
+                listItem.appendChild(itemDetails);
+                listItem.appendChild(quantityControl);
+                cartItemsElement.appendChild(listItem);
+            });
+
+            // Calculate total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalElement.textContent = `Total: $${total}`;
+        }
+
+        function changeQuantity(itemName, change) {
+            const item = cart.find(item => item.name === itemName);
+            if (item) {
+                item.quantity = Math.max(1, item.quantity + change); // Ensure quantity doesn't go below 1
+                updateCartDisplay();
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+        }
+
+        // Display the cart items
+        updateCartDisplay();
+
+        // Confirm Order Button Functionality
+        document.getElementById('confirm-order').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add items to your cart before proceeding to checkout.');
+                return;
+            }
+
+            // Redirect to the checkout page with the cart data
+            const checkoutUrl = 'checkout.html';
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = checkoutUrl;
+        });
+
+        // Back to Shop Button Functionality
+        document.getElementById('back-to-shop').addEventListener('click', function() {
+            window.location.href = 'shop.html'; // Replace with actual shop page URL
+        });
+    </script>
+
+</body>
+</html>
